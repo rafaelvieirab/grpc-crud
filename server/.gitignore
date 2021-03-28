@@ -1,0 +1,21 @@
+# ignore vs code project config files
+.vscode/settings.json
+.vs
+.DS_Store
+
+# ignore logs
+logs/
+*.log
+
+# ignore 3rd party lib
+node_modules
+
+# Ignore built files
+build
+
+# ignore test converage
+coverage
+
+logs
+
+.env
