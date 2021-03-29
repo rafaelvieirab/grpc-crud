@@ -117,7 +117,7 @@ class CarHandler implements ICarServiceServer {
 
 	deleteAllCar = (call: grpc.ServerUnaryCall<Empty, Empty>, callback: grpc.sendUnaryData<Empty>) => {
 		try {
-			carsList = new Map<string, Car>();
+			carsList.clear()
 			return callback(null, new Empty());
 		} catch (e) {
 			console.error('error in delete all cars: ', e);

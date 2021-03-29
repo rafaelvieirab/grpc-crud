@@ -7,8 +7,7 @@ export function getAll(req: any, res: any) {
     if (error) {
       console.error('Error: ', error);
     } else {
-      console.log(response);
-      res.render('index', response);
+      res.render('index', {carsList: response.getCarsList()});
     }
   })
 }

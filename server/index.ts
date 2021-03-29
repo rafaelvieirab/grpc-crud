@@ -13,7 +13,7 @@ server.bindAsync(
     if (error) 
       console.error(error);
     else {
-      console.info(`gRPC listening on ${addressServer} ...`);
+      console.info(`> server listening on ${addressServer} ...`);
       server.start();
     }
   },
