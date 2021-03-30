@@ -12,9 +12,7 @@ export default function Wrraper( props: Props ) {
 				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 				<title>Pratica 3 - SD - gRPC</title>
 			</head>
-			<body>
-				{props.children}
-			</body>
+			{props.children}
 		</html>
 	)
 }
