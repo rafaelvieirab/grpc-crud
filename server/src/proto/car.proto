@@ -36,4 +36,5 @@ service CarService {
 	rpc GetAllCar(Empty) returns (CarList);
 	rpc UpdateCar(Car) returns (Car);
 	rpc DeleteCar(CarRequestId) returns (Empty);
+	rpc DeleteAllCar(Empty) returns (Empty);
 }

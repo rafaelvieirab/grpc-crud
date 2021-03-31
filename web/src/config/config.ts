@@ -1,4 +1,4 @@
-export const PORT = 50051;
-export const ADDRESS = 'localhost';
+export const PORT = 9090;
+export const ADDRESS = '0.0.0.0';
 
 export const hostUrl = `${ADDRESS}:${PORT}`

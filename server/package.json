@@ -1,12 +1,14 @@
 {
-  "name": "pratica3_grpc_2",
+  "name": "server",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "author": "rafaelvieirab",
   "private": true,
   "scripts": {
-    "dev:server": "ts-node-dev --respawn --transpile-only src/server.ts --ignore-watch node_modules"
+    "start-server": "ts-node-dev --respawn --transpile-only ./src/index.ts --ignore-watch node_modules",
+    "start-test": "ts-node-dev --transpile-only ./test/index.ts --ignore-watch node_modules",
+    "buildPBs": "./src/scripts/build-protos.sh"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.2.12",

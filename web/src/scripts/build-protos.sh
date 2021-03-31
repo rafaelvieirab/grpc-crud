@@ -1,9 +1,9 @@
 #!/bin/bash
 
 BASEDIR=$(dirname "$0")
-cd ${BASEDIR}/../../
+cd ${BASEDIR}/../
 
-PROTO_DEST=./src/protobuffer
+PROTO_DEST=./protobuffer
 
 mkdir -p ${PROTO_DEST}
 

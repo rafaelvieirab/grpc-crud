@@ -14,6 +14,7 @@ interface ICarServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceI
     getAllCar: ICarServiceService_IGetAllCar;
     updateCar: ICarServiceService_IUpdateCar;
     deleteCar: ICarServiceService_IDeleteCar;
+    deleteAllCar: ICarServiceService_IDeleteAllCar;
 }
 
 interface ICarServiceService_ICreateCar extends grpc.MethodDefinition<car_pb.CarDTO, car_pb.Car> {
@@ -61,6 +62,15 @@ interface ICarServiceService_IDeleteCar extends grpc.MethodDefinition<car_pb.Car
     responseSerialize: grpc.serialize<car_pb.Empty>;
     responseDeserialize: grpc.deserialize<car_pb.Empty>;
 }
+interface ICarServiceService_IDeleteAllCar extends grpc.MethodDefinition<car_pb.Empty, car_pb.Empty> {
+    path: "/proto.CarService/DeleteAllCar";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<car_pb.Empty>;
+    requestDeserialize: grpc.deserialize<car_pb.Empty>;
+    responseSerialize: grpc.serialize<car_pb.Empty>;
+    responseDeserialize: grpc.deserialize<car_pb.Empty>;
+}
 
 export const CarServiceService: ICarServiceService;
 
@@ -70,6 +80,7 @@ export interface ICarServiceServer extends grpc.UntypedServiceImplementation {
     getAllCar: grpc.handleUnaryCall<car_pb.Empty, car_pb.CarList>;
     updateCar: grpc.handleUnaryCall<car_pb.Car, car_pb.Car>;
     deleteCar: grpc.handleUnaryCall<car_pb.CarRequestId, car_pb.Empty>;
+    deleteAllCar: grpc.handleUnaryCall<car_pb.Empty, car_pb.Empty>;
 }
 
 export interface ICarServiceClient {
@@ -88,6 +99,9 @@ export interface ICarServiceClient {
     deleteCar(request: car_pb.CarRequestId, callback: (error: grpc.ServiceError | null, response: car_pb.Empty) => void): grpc.ClientUnaryCall;
     deleteCar(request: car_pb.CarRequestId, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: car_pb.Empty) => void): grpc.ClientUnaryCall;
     deleteCar(request: car_pb.CarRequestId, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: car_pb.Empty) => void): grpc.ClientUnaryCall;
+    deleteAllCar(request: car_pb.Empty, callback: (error: grpc.ServiceError | null, response: car_pb.Empty) => void): grpc.ClientUnaryCall;
+    deleteAllCar(request: car_pb.Empty, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: car_pb.Empty) => void): grpc.ClientUnaryCall;
+    deleteAllCar(request: car_pb.Empty, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: car_pb.Empty) => void): grpc.ClientUnaryCall;
 }
 
 export class CarServiceClient extends grpc.Client implements ICarServiceClient {
@@ -107,4 +121,7 @@ export class CarServiceClient extends grpc.Client implements ICarServiceClient {
     public deleteCar(request: car_pb.CarRequestId, callback: (error: grpc.ServiceError | null, response: car_pb.Empty) => void): grpc.ClientUnaryCall;
     public deleteCar(request: car_pb.CarRequestId, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: car_pb.Empty) => void): grpc.ClientUnaryCall;
     public deleteCar(request: car_pb.CarRequestId, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: car_pb.Empty) => void): grpc.ClientUnaryCall;
+    public deleteAllCar(request: car_pb.Empty, callback: (error: grpc.ServiceError | null, response: car_pb.Empty) => void): grpc.ClientUnaryCall;
+    public deleteAllCar(request: car_pb.Empty, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: car_pb.Empty) => void): grpc.ClientUnaryCall;
+    public deleteAllCar(request: car_pb.Empty, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: car_pb.Empty) => void): grpc.ClientUnaryCall;
 }

@@ -116,6 +116,17 @@ var CarServiceService = exports.CarServiceService = {
     responseSerialize: serialize_proto_Empty,
     responseDeserialize: deserialize_proto_Empty,
   },
+  deleteAllCar: {
+    path: '/proto.CarService/DeleteAllCar',
+    requestStream: false,
+    responseStream: false,
+    requestType: car_pb.Empty,
+    responseType: car_pb.Empty,
+    requestSerialize: serialize_proto_Empty,
+    requestDeserialize: deserialize_proto_Empty,
+    responseSerialize: serialize_proto_Empty,
+    responseDeserialize: deserialize_proto_Empty,
+  },
 };
 
 exports.CarServiceClient = grpc.makeGenericClientConstructor(CarServiceService);

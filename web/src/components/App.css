@@ -1,27 +1,30 @@
-#root {
+main {
+  background-color: rgb(226, 238, 236);
   width: 100vw;
   height: 100vh;
   margin: 0;
   padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-}
-
-#main main {
+  background-color: rgb(244, 247, 250);
   margin: 0;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
-#main main table {
+#main table {
+  width: 100%;
+  font-size: 12px;
   border: 2px solid rgb(200,200,200);
   border-collapse: collapse;
   letter-spacing: 1px;
-  font-size: 0.8rem;
-  width: 100%;
 }
 
 th, td {
@@ -48,6 +51,7 @@ tr:nth-child(odd) td {
 }
 
 caption {
+  font-size: 14px;
   padding: 10px;
 }
 
@@ -70,12 +74,21 @@ table body tr td button {}
 table body tr td button img {}
 
 #main #footer {
+  padding: 10px;
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
 }
 
 #main #footer button {
-  background-color: green;
   color: white;
+  border-radius: 5px;
+}
+
+#footer #btnCreate {
+  background-color: green;
+}
+
+#footer #btnDelete {
+  background-color: rgb(231, 73, 94);
 }
