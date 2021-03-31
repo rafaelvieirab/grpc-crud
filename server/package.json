@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "start-server": "ts-node-dev --respawn --transpile-only ./src/index.ts --ignore-watch node_modules",
-    "start-test": "ts-node-dev --transpile-only ./test/index.ts --ignore-watch node_modules",
+    "start-test": "ts-node --transpile-only ./src/test/index.ts --ignore-watch node_modules",
     "buildPBs": "./src/scripts/build-protos.sh"
   },
   "dependencies": {

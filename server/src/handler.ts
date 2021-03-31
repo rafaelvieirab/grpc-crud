@@ -1,7 +1,8 @@
 import * as grpc from '@grpc/grpc-js';
 import { v4 as uuidv4 } from 'uuid';
+import { ADDRESS, hostUrl } from './config/config';
 
-import { CarServiceService, ICarServiceServer } from './protobuffer/car_grpc_pb';
+import { CarServiceClient, CarServiceService, ICarServiceServer } from './protobuffer/car_grpc_pb';
 import { Car, CarDTO, CarRequestId, CarList, Empty } from './protobuffer/car_pb';
 
 var carsList = new Map<string, Car>();
@@ -11,10 +12,10 @@ class CarHandler implements ICarServiceServer {
 
 	createCar = (call: grpc.ServerUnaryCall<CarDTO, Car>, callback: grpc.sendUnaryData<Car>) => {
 		try {
-			const carDTO = call.request;
-			const id = uuidv4();
+			const carDTO =  call.request;
+			const id =  uuidv4();
 
-			const car = new Car()
+			const car =  new Car()
 				.setId(id)
 				.setName(carDTO.getName())
 				.setBrand(carDTO.getBrand())
@@ -22,7 +23,7 @@ class CarHandler implements ICarServiceServer {
 				.setModelyear(carDTO.getModelyear())
 				.setPrice(parseFloat(carDTO.getPrice().toFixed(2)));
 
-			return callback(null, car);
+			return  callback(null, car);
 		} catch (e) {
 			console.error('error in create new car: ', e);
 			e.code = grpc.status.INTERNAL;
@@ -128,5 +129,5 @@ class CarHandler implements ICarServiceServer {
 export default {
 	service: CarServiceService,         // Service interface
 	handler: new CarHandler(),          // Service interface definitions
-	// client: new CarServiceClient(hostUrl, grpc.credentials.createInsecure()),
+	client: new CarServiceClient(hostUrl, grpc.credentials.createInsecure()),
 };

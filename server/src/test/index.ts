@@ -3,16 +3,16 @@ import * as stubClient from "./stubClient";
 let id1 = stubClient.createCar({
   name: 'Hylux',
   brand: 'Toyota',
-  manufactureYear: 2015,
-  modelYear: 2015,
+  manufactureyear: 2015,
+  modelyear: 2015,
   price: 80000.99,
 });
 
 let id2 = stubClient.createCar({
   name: 'Hylux',
   brand: 'Toyota',
-  manufactureYear: 2015,
-  modelYear: 2015,
+  manufactureyear: 2015,
+  modelyear: 2015,
   price: 80000.99,
 });
 
@@ -23,8 +23,8 @@ stubClient.getById(id1);
 stubClient.updateCar({
   name: 'Fusca',
   brand: 'Fusca IA',
-  manufactureYear: 1980,
-  modelYear: 1980,
+  manufactureyear: 1980,
+  modelyear: 1980,
   price: 40000.99,
 })
 
