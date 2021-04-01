@@ -14,18 +14,21 @@ interface CarsParams {
 
 export function getById(id: string) {
   const request = new CarRequestId().setId(id);
+
   stubClient.getCar(request, (error, response) => {
-    console.info(`\n\nCarro com id ${id}: \n ${response}`);
-    // console.info(`\n\nCarro com id ${id}: \n ${print(response)}`);
+    console.log('\n\n-----Get By Id-----')
+    // console.info(`\n\nCarro com id ${id}: \n ${response}`);
+    console.info(`Carro com id ${id}: \n ${print(response)}`);
   })
 }
 
 export function getAll() {
   stubClient.getAllCar(new Empty(), (error, response: CarList) => {
+    console.log('\n\n-----Get All-----')
     if (error) {
       console.error('Error code:' + error.code + '\nMessage:' + error.message)
     } else {
-      console.info(`\n\nTodos os carros cadastrados:\n ${printAll(response)}`);
+      printAll(response);
     }
   });
 }
@@ -38,13 +41,15 @@ export function createCar(params: CarsParams) {
     .setModelyear(params.modelyear)
     .setPrice(params.price)
 
+
   let id = '';
   stubClient.createCar(carDTO, (error, response: Car) => {
+    console.log('\n\n-----Create-----')
     if (error) {
       console.error('Erro: Carro não foi criado')
     } else {
-      console.info(`\n\nCarro criado: \n ${response}`);
-      // console.info(`\n\nCarro criado: \n ${print(response)}`);
+      // console.info(`Carro criado: \n ${response}`);
+      console.info(`Carro criado: \n ${print(response)}`);
       id = response.getId();
     }
   });
@@ -60,15 +65,17 @@ export function updateCar(params: CarsParams) {
     .setModelyear(params.modelyear)
     .setPrice(params.price)
 
+
   const requestGet = new CarRequestId().setId(params.id || '');
   stubClient.getCar(requestGet, (error, response) => {
-    console.info(`\nCarro com id ${params.id} antes de ser atualizado: \n ${response}`);
-    // console.info(`\nCarro com id ${params.id} antes de ser atualizado: \n ${print(response)}`);
+    console.log('\n\n-----Update-----')
+    // console.info(`Carro com id ${params.id} antes de ser atualizado: \n ${response}`);
+    console.info(`Carro com id ${params.id} antes de ser atualizado: \n ${print(response)}`);
   })
 
   stubClient.updateCar(carUpdated, (error, response: Car) => {
-    console.info(`\n\nCarro com id ${params.id} atualizado: \n ${response}`);
-    // console.info(`\n\nCarro com id ${params.id} atualizado: \n ${print(response)}`);
+    // console.info(`Carro com id ${params.id} atualizado: \n ${response}`);
+    console.info(`Carro com id ${params.id} atualizado: \n ${print(response)}`);
   });
 }
 
@@ -76,35 +83,39 @@ export function deleteCarById(id: string) {
   const carRequestId = new CarRequestId().setId(id);
 
   stubClient.deleteCar(carRequestId, (error, response: Empty) => {
-    console.info(`\n\nCarro com id ${id} foi deletado:`);
+    console.log('\n\n-----Delete By ID-----')
+    console.info(`Carro com id ${id} foi deletado:`);
   });
 }
 
 export function deleteAllCar() {
   stubClient.deleteAllCar(new Empty(), (error, response: Empty) => {
-    console.info(`\n\nTodos os carros foram deletados.`);
+    console.log('\n\n-----Delete All-----')
+    console.info(`Todos os carros foram deletados.`);
   })
 }
 
 function print(car: Car) {
-
-  return car.toString()
-  // let json = '{';
-  // let obj:CarsParams = car.toObject().;
-  // for (var key in obj) {
-  //   // @ts-ignore
-  //   json += `\t${key}: ${obj[key]},`;
-  // }
-  // json += '}';
-  // return json;
+  if (car == undefined)
+    return car
+  let json = '{';
+  let obj: CarsParams = car.toObject();
+  for (var key in obj) {
+    // @ts-ignore
+    json += `\n  ${key}: ${obj[key]},`;
+  }
+  json += '\n}';
+  return json;
 }
 
 function printAll(cars: CarList) {
+  if (cars == undefined)
+    return
 
-  let json = '{';
-  cars.toArray().forEach(car => {
-    json += print(car) + ','
+  console.info("Todos os carros cadastrados")
+  console.log('{')
+  cars.getCarsList().forEach(car => {
+    console.log(print(car) + ',\n')
   })
-  json += '}';
-  return json;
+  console.log('}')
 }

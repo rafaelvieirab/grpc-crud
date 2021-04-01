@@ -9,25 +9,31 @@ let id1 = stubClient.createCar({
 });
 
 let id2 = stubClient.createCar({
-  name: 'Hylux',
+  name: 'Ferrari',
   brand: 'Toyota',
-  manufactureyear: 2015,
-  modelyear: 2015,
-  price: 80000.99,
+  manufactureyear: 2014,
+  modelyear: 2012,
+  price: 84300.99,
 });
 
-stubClient.getAll();
+// id1 = '0';
+// id2 = '1';
 
-stubClient.getById(id1);
+setTimeout(() => {stubClient.getAll()},1000);
 
-stubClient.updateCar({
+setTimeout(() => {stubClient.getById(id1)},1000);
+
+setTimeout(() => {stubClient.updateCar({
+  id: id1,
   name: 'Fusca',
   brand: 'Fusca IA',
   manufactureyear: 1980,
   modelyear: 1980,
   price: 40000.99,
-})
+})},1000);
 
-stubClient.deleteCarById(id2);
-stubClient.getAll();
-stubClient.deleteAllCar();
+setTimeout(() => {stubClient.deleteCarById(id2);},1000);
+
+setTimeout(() => {stubClient.getAll()},1000);
+
+setTimeout(() => {stubClient.deleteAllCar()},1000);

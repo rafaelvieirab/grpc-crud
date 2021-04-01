@@ -1,21 +1,24 @@
 import * as grpc from '@grpc/grpc-js';
 import { v4 as uuidv4 } from 'uuid';
-import { ADDRESS, hostUrl } from './config/config';
 
 import { CarServiceClient, CarServiceService, ICarServiceServer } from './protobuffer/car_grpc_pb';
 import { Car, CarDTO, CarRequestId, CarList, Empty } from './protobuffer/car_pb';
+import { hostUrl } from './config/config';
 
 var carsList = new Map<string, Car>();
+var count = 0;
 
 class CarHandler implements ICarServiceServer {
 	[name: string]: grpc.UntypedHandleCall;
 
 	createCar = (call: grpc.ServerUnaryCall<CarDTO, Car>, callback: grpc.sendUnaryData<Car>) => {
 		try {
-			const carDTO =  call.request;
-			const id =  uuidv4();
+			const carDTO = call.request;
+			const id = uuidv4();
+			// const id = count.toString();
+			// count++;
 
-			const car =  new Car()
+			const car = new Car()
 				.setId(id)
 				.setName(carDTO.getName())
 				.setBrand(carDTO.getBrand())
@@ -23,7 +26,8 @@ class CarHandler implements ICarServiceServer {
 				.setModelyear(carDTO.getModelyear())
 				.setPrice(parseFloat(carDTO.getPrice().toFixed(2)));
 
-			return  callback(null, car);
+			carsList.set(id, car);
+			return callback(null, car);
 		} catch (e) {
 			console.error('error in create new car: ', e);
 			e.code = grpc.status.INTERNAL;
